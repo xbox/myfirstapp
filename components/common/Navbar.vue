@@ -7,6 +7,8 @@
           <NuxtLink to="/links" class="text-white hover:text-gray-300 transition-colors">Links</NuxtLink>
           <div class="text-white">|</div>
           <NuxtLink to="/about" class="text-white hover:text-gray-300 transition-colors">About</NuxtLink>
+          <div class="text-white">|</div>
+          <NuxtLink to="/blog" class="text-white hover:text-gray-300 transition-colors">Blog</NuxtLink>
         </div>
         <UButton
           variant="ghost" 
