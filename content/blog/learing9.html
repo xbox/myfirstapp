@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuxt3知识总结</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: monospace;
+            border: 1px solid #e9ecef;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #34495e;
+        }
+        .file-tree {
+            font-family: monospace;
+            white-space: pre;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nuxt3 知识总结</h1>
+
+        <div class="section">
+            <h2>1. 安装和启动</h2>
+            <h3>前置要求：</h3>
+            <ul>
+                <li>安装 node</li>
+                <li>安装 npm</li>
+            </ul>
+            <div class="code-block">
+                <p># 创建项目</p>
+                npx nuxi@latest init &lt;project-name&gt;
+                <p># 安装 nuxtUI</p>
+                npm install -S @nuxt/ui
+                <p># 启动项目</p>
+                cd &lt;project-name&gt;<br>
+                npm run dev
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. 目录结构</h2>
+            <div class="file-tree">
+📁 your-project/
+├─ 📁 .nuxt/          # 构建目录
+├─ 📁 assets/         # 资源文件
+├─ 📁 components/     # 组件目录
+├─ 📁 composables/    # 组合式函数
+├─ 📁 content/        # 内容目录
+├─ 📁 layouts/        # 布局文件
+├─ 📁 pages/          # 页面文件
+├─ 📁 plugins/        # 插件目录
+├─ 📁 public/         # 静态文件
+├─ 🗒️ app.vue         # 应用入口
+├─ 🗒️ nuxt.config.ts  # Nuxt配置文件
+└─ 🗒️ package.json    # 项目配置文件
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. app.vue</h2>
+            <p>app.vue是Nuxt3应用的入口文件，它定义了应用的布局和全局组件。</p>
+            <div class="code-block">
+                <pre>&lt;template&gt;
+  &lt;div&gt;
+    &lt;NuxtPage /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. components 目录</h2>
+            <p>components目录用于存放所有Vue组件，这些组件可以被导入到页面、布局或其他组件中。组件包含三个部分：</p>
+            <div class="code-block">
+                <pre>&lt;template&gt;
+  &lt;!-- HTML模板 --&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+// JavaScript逻辑
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+/* CSS样式 */
+&lt;/style&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. layouts 目录</h2>
+            <p>layouts目录用于存放页面布局组件，包含页面的公共部分。</p>
+            <div class="code-block">
+                <pre>&lt;template&gt;
+  &lt;div&gt;
+    &lt;TheHeader /&gt;
+    &lt;slot /&gt;
+    &lt;TheFooter /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. content 目录</h2>
+            <p>content目录用于创建基于文件的内容管理系统（CMS）。支持.md、.yml、.csv和.json文件。</p>
+            <div class="code-block">
+                <p># 安装content模块</p>
+                npx nuxi module add content
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>7. 核心组件</h2>
+            <h3>NuxtLink</h3>
+            <div class="code-block">
+                <pre>&lt;NuxtLink to="/about"&gt;关于页面&lt;/NuxtLink&gt;</pre>
+            </div>
+            <h3>ContentList</h3>
+            <div class="code-block">
+                <pre>&lt;ContentList path="/articles" v-slot="{ list }"&gt;
+  &lt;div v-for="article in list" :key="article._path"&gt;
+    &lt;h2&gt;{{ article.title }}&lt;/h2&gt;
+    &lt;p&gt;{{ article.description }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/ContentList&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>8. 乐高类比理解</h2>
+            <div class="highlight">
+                <p>"理解为乐高或者 Minecraft 的话："</p>
+                <ul>
+                    <li>components 是零件</li>
+                    <li>layout 是图纸</li>
+                    <li>pages 是创建的每个世界</li>
+                    <li>app.vue 是根，负责分发各个 pages 内容</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
