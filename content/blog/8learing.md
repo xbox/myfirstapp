@@ -287,7 +287,7 @@ ContentList 是 Nuxt Content 提供的组件，用于列出和显示内容目录
 </template>
 ```
 ```
-path:
+PATH路径的逻辑:
     / - 读取 content 根目录
     /blog - 读取 content/blog 目录下的文件
     /docs/guide - 读取 content/docs/guide 目录
