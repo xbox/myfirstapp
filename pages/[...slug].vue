@@ -5,7 +5,9 @@
             class="w-full flex items-start justify-start" 
             id="blog-page-content-container"
         >
-          <ContentDoc class="text-black text-center p-10 rounded-xl max-w-4xl markdown-body bg-transparent" />
+          <ContentDoc 
+            class="text-black text-left p-10 rounded-xl max-w-4xl markdown-body bg-transparent w-full" 
+          />
         </FeaturesWaitlistContentContainer>
       </div>
     </div>
